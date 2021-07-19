@@ -1,5 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
+import { Provider } from 'react-redux'
 
 // pages
 import Register from "./pages/Register";
@@ -9,14 +15,8 @@ import Home from "./pages/Home";
 import Edit from "./pages/Edit";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
-import { Provider } from 'react-redux'
 import store from "./store";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
     return (
@@ -31,15 +31,9 @@ function App() {
                         <Route path="/register">
                             <Register />
                         </Route>
-                        <Route path="/editprofile">
-                            <Edit />
-                        </Route>
-                        <Route path="/home">
-                            <Home />
-                        </Route>
-                        <Route path="/users">
-                            <Users />
-                        </Route>
+                        <PrivateRoute path="/editprofile" component={Edit} />
+                        <PrivateRoute path="/home" component={Home} />
+                        <PrivateRoute path="/users" component={Users} />
                     </Switch>
                 </div>
                 <Footer />
