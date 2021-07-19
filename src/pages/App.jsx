@@ -11,6 +11,8 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
+import { Provider } from 'react-redux'
+import store from "./../store";
 
 function App() {
     const [contacts, setContacts] = useState([]);
@@ -31,46 +33,48 @@ function App() {
     return (
 
         <Router>
-            <div>
-                <Header />
-                {/*  */}
-                <Footer />
+            <Provider store={store}>
+                <div>
+                    <Header />
+                    {/*  */}
+                    <Footer />
 
-                {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-                <Switch>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <Route path="/register">
-                        <Register onSub={addNote} />
-                    </Route>
-                    <Route path="/editprofile">
-                        <Edit />
-                    </Route>
-                    <Route path="/home">
-                        <Home />
+                    {/* A <Switch> looks through its children <Route>s and
+                renders the first one that matches the current URL. */}
+                    <Switch>
+                        <Route path="/login">
+                            <Login />
+                        </Route>
+                        <Route path="/register">
+                            <Register onSub={addNote} />
+                        </Route>
+                        <Route path="/editprofile">
+                            <Edit />
+                        </Route>
+                        <Route path="/home">
+                            <Home />
 
 
-                    </Route>
-                    <Route path="/users">
-                        {contacts.map((newNote, index) => {
-                            return (
-                                <Users
-                                    key={index}
-                                    id={index}
-                                    onDelete={letsDelete}
-                                    fname={newNote.fName}
-                                    lname={newNote.lName}
-                                    email={newNote.email}
-                                    password={newNote.password}
-                                />
+                        </Route>
+                        <Route path="/users">
+                            {contacts.map((newNote, index) => {
+                                return (
+                                    <Users
+                                        key={index}
+                                        id={index}
+                                        onDelete={letsDelete}
+                                        fname={newNote.fName}
+                                        lname={newNote.lName}
+                                        email={newNote.email}
+                                        password={newNote.password}
+                                    />
 
-                            );
-                        })}
-                    </Route>
-                </Switch>
-            </div>
+                                );
+                            })}
+                        </Route>
+                    </Switch>
+                </div>
+            </Provider>
         </Router>
     );
 }
