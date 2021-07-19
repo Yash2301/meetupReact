@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: 300;
+  }
+  
+  body {
+    font-family: "Source Sans Pro", sans-serif;
+    color: white;
+    font-weight: 300;
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+  }
+  header {
+    background-color: #13a2f5;
+    margin: auto -16px;
+    padding: 16px 32px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    top: 0;
+    width:100%;
+    text-align: center;
+  }
+  footer {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    background-color: #13a2f5;
+  }
+  
+  footer p {
+    color:#ffffff;
+    padding-top: 10px;
+  }
+  .container {
+    margin: 10% auto;
+    padding: 80px 0;
+    text-align: center;
+  }
+  
+  .container h1 {
+    font-size: 40px;
+    font-weight: 200;
+    color: #13a2f5;
+    padding-bottom:15px ;
+  }
+  .home h1{
+
+    font-size: 35px;
+    font-weight:200px;
+    color:#13a2f5;
+    padding-top:30px;
+    text-align: center;
+
+  }
+  .home h3{
+    font: size 20px;
+    font-weight:200px;
+    color:#13a2f5;
+    
+    text-align:center;
+
+  }
+  input {
+    border: 1px solid;
+    border-color: #13a2f5;
+    background-color: #ffffff; 
+    width: 250px;
+    border-radius: 3px;
+    font-family: "Source Sans Pro", sans-serif;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    font-weight: 300;
+  }
+  
+  button {
+    appearance: none;
+    outline: 0;
+    background-color: #13a2f5;
+    border: 0;
+    padding: 10px 15px;
+    color: #ffffff;
+    border-radius: 3px;
+    width: 200px;
+    font-size: 18px;
+    cursor:pointer;
+  }
+  .users {
+    border: 1px solid rgba(252, 252, 252, 0.4);
+    background-color: rgba(252, 252, 252, 0.2);
+    border-radius: 3px;
+    box-shadow: 0 2px 5px #ccc;
+    padding: 10px;
+    width: 240px;
+    height: auto;
+    margin: 16px;
+    float: left;
+    color:#13a2f5;
+  }
+  .users h1 {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .users p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: center;
+  }
+
+  .connect {
+
+    float: right;
+    cursor: pointer;
+    padding-right: 10px;
+    /* color:#50a3a2 */
+    
+  }
+  .call{
+    float: right;
+    cursor: pointer;
+    padding-right: 10px;
+    /* color:#50a3a2; */
+
+  }
+  
+  
+  
