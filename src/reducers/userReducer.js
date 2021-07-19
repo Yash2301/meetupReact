@@ -2,9 +2,9 @@ const initialState = {
     users:[]
 }
 
-export default function authReducer(state = initialState, action) {
+export default function userReducer(state = initialState, action) {
     switch (action.type) {
-        case 'auth/login': {
+        case 'user/addUser': {
             return {
                 ...state,
                 users: []
