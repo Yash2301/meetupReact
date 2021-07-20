@@ -131,7 +131,11 @@
     cursor: pointer;
     padding-right: 10px;
     /* color:#50a3a2; */
+  }
 
+  .FormControl {
+    padding-top: 10px;
+    padding-bottom: 15px;
   }
   
   

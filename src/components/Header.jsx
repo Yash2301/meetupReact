@@ -1,7 +1,13 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Link } from 'react-router-dom';
+import { setLogout } from '../utils';
+import { useSelector } from 'react-redux'
+
 
 function Header() {
+    const auth = useSelector((state) => state.authReducer)
+
     return (
         <header>
             <h1>MeetUp</h1>
@@ -10,12 +16,18 @@ function Header() {
                     <li style={{ padding: '10px', textDecoration: 'none' }}>
                         <Link to="/home">Home</Link>
                     </li>
-                    <li style={{ padding: '10px', textDecoration: 'none' }}>
+                    {auth.isLogin === false && <li style={{ padding: '10px', textDecoration: 'none' }}>
                         <Link to="/login">Login</Link>
-                    </li>
-                    <li style={{ padding: '10px', textDecoration: 'none' }}>
+                    </li>}
+                    {auth.isLogin === false && <li style={{ padding: '10px', textDecoration: 'none' }}>
                         <Link to="/register">Register</Link>
-                    </li>
+                    </li>}
+                    {auth.isLogin === true && <li style={{ padding: '10px', textDecoration: 'none' }}>
+                        <a onClick={()=>{
+                            setLogout()
+                            window.location.reload()
+                        }} >Logout</a>
+                    </li>}
                 </ul>
             </nav>
         </header>

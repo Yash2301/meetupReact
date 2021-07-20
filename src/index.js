@@ -18,6 +18,11 @@ import Footer from "./components/Footer";
 import store from "./store";
 import PrivateRoute from "./components/PrivateRoute";
 
+function Logout (){
+    
+    return 
+}
+
 function App() {
     return (
         <Router>
@@ -34,9 +39,10 @@ function App() {
                         <PrivateRoute path="/editprofile" component={Edit} />
                         <PrivateRoute path="/home" component={Home} />
                         <PrivateRoute path="/users" component={Users} />
+                        <PrivateRoute path="/logout" component={Logout} />
                     </Switch>
                 </div>
-                <Footer />
+                {/* <Footer /> */}
             </Provider>
         </Router>
     );

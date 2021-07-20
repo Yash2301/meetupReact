@@ -1,15 +1,22 @@
 
 import React, { useState } from "react";
-import { Link, useLocation } from 'react-router-dom';
-
+import { Link, useHistory } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+import { BASE_URL } from './../config/constants';
+import { useDispatch } from 'react-redux'
+import { login } from "../actions/auth.action";
 
 function Login() {
 
     const [contact, setContact] = useState({
-        uName: "",
+        username: "",
         password: ""
     });
+    const dispatch = useDispatch()
 
+
+    const [formSubmit, setFormSubmit] = useState(false);
+    const history = useHistory();
     function handleChange(event) {
         const { name, value } = event.target;
 
@@ -20,9 +27,29 @@ function Login() {
             };
         });
     }
-    function submitForm() {
+    function submitForm(e) {
+        setFormSubmit(true);
+        // call api
+        fetch(BASE_URL+'login',{
+            method:"POST",
+            body:JSON.stringify({
+                email: contact.username,
+                password: contact.password
+            }),
+            headers:{
+                "Content-Type": "application/json",
+            }
+        }).then(res=> res.json())
+        .then((res)=>{
+            console.log(res);
+            if(res && res.token){
+                dispatch(login(res))
+                history.push('/home');
+            }
+        })
+        // if true then login with token 
 
-        console.log(contact);
+        e.preventDefault();
     }
 
     return (
@@ -33,34 +60,35 @@ function Login() {
             </h1>
 
             <form onSubmit={submitForm}>
-                <input
+                <div className="FormControl">
+                    <TextField
                     onChange={handleChange}
                     type="text"
-                    name="uName"
-                    value={contact.uName}
+                    name="username"
+                    value={contact.username}
+                    className="form-invalid"
                     placeholder="User Name"
-                />
-                {/* <input
-                    onChange={handleChange}
-                    name="lName"
-                    value={contact.lName}
-                    placeholder="Last Name"
-                /> */}
-                <input
+                    variant="outlined"
+                    error={formSubmit && contact.username === ''?true:false}
+                    helperText={formSubmit && contact.username === ''?"username is required":''}
+                    />
+                </div>
+                <div className="FormControl" >
+                    <TextField
                     onChange={handleChange}
                     type="password"
                     name="password"
                     value={contact.password}
                     placeholder="Password"
-                />
-                {/* <div>
-                    <p>"" </p>
-                </div> */}
+                    variant="outlined"
+                    error={formSubmit && contact.password === ''?true:false}
+                    helperText={formSubmit && contact.password === ''?"password is required":''}
+                    />
+                </div>
                 <button type="submit">Login</button>
                 <div>
-                    <p> ""</p>
+                    <Link to="/register" >Register</Link>
                 </div>
-                <Link to="/register" >Register</Link>
             </form>
         </div >
     );

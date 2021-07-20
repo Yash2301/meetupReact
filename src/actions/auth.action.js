@@ -1,18 +1,10 @@
-const login = text => {
+const login = payload => {
     return {
         type: 'auth/login',
-        payload: text
-    }
-}
-
-const register = text => {
-    return {
-        type: 'auth/register',
-        payload: text
+        payload
     }
 }
 
 export {
     login,
-    register
 }
