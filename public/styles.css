@@ -23,7 +23,6 @@
     text-align: center;
   }
   footer {
-    position: absolute;
     text-align: center;
     bottom: 0;
     width: 100%;
@@ -137,6 +136,5 @@
     padding-top: 10px;
     padding-bottom: 15px;
   }
-  
-  
+
   
