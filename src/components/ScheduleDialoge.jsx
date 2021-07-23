@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -45,11 +46,19 @@ export default function ScheduleDialoge(props) {
     }
 
     useEffect(()=>{
-        setScheduleForm({
-            meetingTime:'',
-            title:'',
-            description:'',
-        })
+        if(props.isEidt){
+            setScheduleForm({
+                meetingTime: props.editData.meeting_time?moment(props.editData.meeting_time).format('yyyy-MM-DDThh:mm:ss'):'',
+                title:props.editData.title,
+                description: props.editData.description,
+            })
+        }else{
+            setScheduleForm({
+                meetingTime:'',
+                title:'',
+                description:'',
+            })
+        }
     },[]);
 
     return (
@@ -75,6 +84,7 @@ export default function ScheduleDialoge(props) {
                                     shrink: true,
                                 }}
                                 name="meetingTime"
+                                value={scheduleForm.meetingTime}
                                 onChange={onValueChange}
                             />
                         </FormControl>
@@ -90,6 +100,7 @@ export default function ScheduleDialoge(props) {
                                     shrink: true,
                                 }}
                                 name="title"
+                                value={scheduleForm.title}
                                 onChange={onValueChange}
                             />
                         </FormControl>
@@ -105,6 +116,7 @@ export default function ScheduleDialoge(props) {
                                 rowsMax={6}
                                 name="description"
                                 onChange={onValueChange}
+                                value={scheduleForm.description}
                             />
                         </FormControl>
                     </div>
