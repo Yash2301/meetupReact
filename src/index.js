@@ -17,6 +17,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import store from "./store";
 import PrivateRoute from "./components/PrivateRoute";
+import Schedules from './pages/Schedules'
 
 function Logout (){
     
@@ -39,7 +40,7 @@ function App() {
                         <PrivateRoute path="/editprofile" component={Edit} />
                         <PrivateRoute path="/home" component={Home} />
                         <PrivateRoute path="/users" component={Users} />
-                        <PrivateRoute path="/logout" component={Logout} />
+                        <PrivateRoute path="/schedules" component={Schedules} />
                     </Switch>
                 </div>
                 {/* <Footer /> */}

@@ -22,12 +22,17 @@ function Header() {
                     {auth.isLogin === false && <li style={{ padding: '10px', textDecoration: 'none' }}>
                         <Link to="/register">Register</Link>
                     </li>}
+                    
+                    {auth.isLogin === true && <li style={{ padding: '10px', textDecoration: 'none' }}>
+                        <Link to="/schedules">Schedules</Link>
+                    </li>}
                     {auth.isLogin === true && <li style={{ padding: '10px', textDecoration: 'none' }}>
                         <a onClick={()=>{
                             setLogout()
                             window.location.reload()
                         }} >Logout</a>
                     </li>}
+                    
                 </ul>
             </nav>
         </header>

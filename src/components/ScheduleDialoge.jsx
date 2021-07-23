@@ -113,6 +113,11 @@ export default function ScheduleDialoge(props) {
                     <Button onClick={()=>{
                         console.log(scheduleForm);
                         if(scheduleForm.meetingTime != '' && scheduleForm.title != '' && scheduleForm.description != ''){
+                            setScheduleForm({
+                                meetingTime:'',
+                                title:'',
+                                description:'',
+                            })
                             props.saveDialog(scheduleForm)
                         }
                     }} className={classes.buttonScd} variant="contained" color="primary">

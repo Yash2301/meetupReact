@@ -7,20 +7,21 @@ import { getToken } from "./../utils";
 import ContactCard from "./../components/ContactCard";
 import { Container,Typography,Grid } from '@material-ui/core';
 import ScheduleDialoge from './../components/ScheduleDialoge';
+import { useHistory } from "react-router";
 
 function Users(props) {
     
     const [ users, setUsers] = useState([]);
     const [ frineds, setFrineds] = useState([]);
     const [ openDialog, setOpenDialog] = useState(false);
+    const [ scheduleFriendId, setScheduleFriendId] = useState(null);
     
+    const history = useHistory();
+
     useEffect(() => {
         getUsers()
     }, [])
 
-    function scheduleCall() {
-        alert('a')
-    }
 
     function getUsers() {
         fetch(BASE_URL+'users',{
@@ -56,6 +57,26 @@ function Users(props) {
         })
     }
 
+    function scheduleAdd(scheduleData) {
+        fetch(BASE_URL+'schedule',{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+                "Authorization": "Bearer "+getToken()
+            },
+            body:JSON.stringify({
+                "friend_id": scheduleFriendId,
+                "title": scheduleData.title,
+                "meeting_time":scheduleData.meetingTime,
+                "status":1,
+                "description":scheduleData.description
+            })
+        }).then(res=> res.json())
+        .then(()=>{
+            history.push('/schedules')
+        })
+    }
+
     return (
         <Container>
             <Typography gutterBottom variant="h3" style={{color:'black',marginTop:"1em"}} component="h2">
@@ -65,6 +86,7 @@ function Users(props) {
                     {frineds.map((item)=>{
                         return <Grid item xs={12} md={3} >
                                 <ContactCard name={item.username} user={item} friendConnect={true}  makeSchedule={false} scheduleCall={()=>{
+                                    setScheduleFriendId(item.friend_id)
                                     setOpenDialog(true)
                                 }} />
                             </Grid>
@@ -75,8 +97,9 @@ function Users(props) {
             </Typography>
             <ScheduleDialoge openDialog={openDialog} closeDialog={()=>{
                 setOpenDialog(false)
-            }} saveDialog={(formData)=>{
-                console.log(formData);
+            }} saveDialog={(scheduleData)=>{
+                console.log('aaa');
+                scheduleAdd(scheduleData)
                 setOpenDialog(false)
             }} />
             <Grid container spacing={4} >
