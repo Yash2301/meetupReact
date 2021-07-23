@@ -5,13 +5,15 @@ import AddIcCallIcon from '@material-ui/icons/AddIcCall';
 import { BASE_URL } from './../config/constants';
 import { getToken } from "./../utils";
 import ContactCard from "./../components/ContactCard";
-import { Container,Typography,Grid } from '@material-ui/core'
+import { Container,Typography,Grid } from '@material-ui/core';
+import ScheduleDialoge from './../components/ScheduleDialoge';
 
 function Users(props) {
     
     const [ users, setUsers] = useState([]);
     const [ frineds, setFrineds] = useState([]);
-
+    const [ openDialog, setOpenDialog] = useState(false);
+    
     useEffect(() => {
         getUsers()
     }, [])
@@ -56,23 +58,31 @@ function Users(props) {
 
     return (
         <Container>
-            <Typography gutterBottom variant="h3" style={{color:'black'}} component="h2">
+            <Typography gutterBottom variant="h3" style={{color:'black',marginTop:"1em"}} component="h2">
                 Friends
             </Typography>
             <Grid container spacing={4} >
                     {frineds.map((item)=>{
                         return <Grid item xs={12} md={3} >
-                                <ContactCard name={item.username} user={item} friendConnect={false}  makeSchedule={true} scheduleCall={scheduleCall} />
+                                <ContactCard name={item.username} user={item} friendConnect={true}  makeSchedule={false} scheduleCall={()=>{
+                                    setOpenDialog(true)
+                                }} />
                             </Grid>
                     })}
             </Grid>
-            <Typography gutterBottom variant="h3" style={{color:'black'}} component="h2">
+            <Typography gutterBottom variant="h3" style={{color:'black',marginTop:"1em"}} component="h2">
                 Users
             </Typography>
+            <ScheduleDialoge openDialog={openDialog} closeDialog={()=>{
+                setOpenDialog(false)
+            }} saveDialog={(formData)=>{
+                console.log(formData);
+                setOpenDialog(false)
+            }} />
             <Grid container spacing={4} >
                     {users.map((item)=>{
                     return <Grid item xs={12} md={3} >
-                            <ContactCard name={item.username} user={item} friendConnect={true} makeSchedule={false} connectUser={connectUser} />
+                            <ContactCard name={item.username} user={item} friendConnect={false} makeSchedule={true} connectUser={connectUser} />
                         </Grid>
                     })}
             </Grid>

@@ -32,11 +32,13 @@ export default function ContactCard(props) {
       <CardActions>
         {props.friendConnect && <div className="call">
             <AddIcCallIcon onClick={()=>{
-              props.connectUser(props.user.id)
+              props.scheduleCall(props.user.id)
             }} ></AddIcCallIcon>
         </div>}
         {props.makeSchedule && <div className="connect">
-            <PersonAddIcon onClick={props.scheduleCall} ></PersonAddIcon>
+            <PersonAddIcon onClick={()=>{
+              props.connectUser(props.user.id)
+            }} ></PersonAddIcon>
         </div>}
       </CardActions>
     </Card>

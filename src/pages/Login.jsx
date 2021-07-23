@@ -28,7 +28,14 @@ function Login() {
         });
     }
     function submitForm(e) {
+        e.preventDefault();
         setFormSubmit(true);
+        if(contact.username == ""){
+            return '';
+        }
+        if(contact.password == ""){
+            return '';
+        }
         // call api
         fetch(BASE_URL+'login',{
             method:"POST",
@@ -47,9 +54,7 @@ function Login() {
                 history.push('/home');
             }
         })
-        // if true then login with token 
-
-        e.preventDefault();
+        // if true then login with token
     }
 
     return (
